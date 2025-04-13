@@ -1,23 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ITEMS_DATA, ItemData } from './items/items-data';
 
 @Component({
   selector: 'app-windows98-window',
   standalone: true,
   imports: [CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './windows98-window.component.html',
   styleUrl: './windows98-window.component.css'
 })
+
 export class Windows98WindowComponent {
-  items: string[] = [
-    '3½ Floppy (A:)',
-    'Local Disk (C:)',
-    'CD Drive (D:)',
-    'Control Panel',
-    'Printers',
-    'Dial-Up Networking',
-    'Recycle Bin',
-    'My Documents'
-  ];
+  activeWindow = true;
+  items: ItemData[] = ITEMS_DATA;
+
+  closeWindow() : void{
+    this.activeWindow = false;
+  }
+
+  openWindow() : void{
+    this.activeWindow = true;
+  }
+
 }

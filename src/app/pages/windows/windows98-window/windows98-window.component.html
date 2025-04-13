@@ -1,8 +1,19 @@
-<div class="bg-blue-900">
-  <div class="min-h-screen flex items-center justify-center">
+<div class="bg-blue-900 min-h-screen font-mono">
+  <!-- Carpeta -->
+  <div class="absolute inset-0 min-h-screen flex flex-col items-center justify-center z-0" (click)="openWindow()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" stroke-linecap="round"
+      stroke-linejoin="round" class="lucide lucide-folder-icon lucide-folder stroke-black/70 fill-amber-300/90">
+      <path
+        d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+    </svg>
+    <p class="text-white font-mono">Мой ковер</p><!-- Mi carpeta -->
+  </div>
+
+  <!-- Ventana -->
+  <div class="absolute inset-0 min-h-screen flex items-center justify-center z-20" *ngIf="activeWindow">
     <div class="flex flex-col border-2 border-[#dfdfdf] shadow-[2px_2px_4px_rgba(0,0,0,0.5)] bg-[#c0c0c0]">
       <div class="flex items-center justify-between px-1 py-0.5 bg-[#000080] text-white">
-        <div class="text-sm font-bold tracking-tight">Titulo</div>
+        <div class="text-sm font-bold tracking-tight font-mono">Закулисный особняк</div> <!-- Mansión de los backrooms -->
         <div class="flex space-x-0.5">
           <button
             class="flex items-center justify-center w-4 h-4 bg-[#c0c0c0] border-t border-l border-r border-[#ffffff] border-b border-b-[#808080] border-r-[#808080] hover:active:bg-[#c0c0c0] hover:active:border-t-[#808080] hover:active:border-l-[#808080] hover:active:border-b-[#ffffff] hover:active:border-r-[#ffffff]">
@@ -20,7 +31,7 @@
               <rect width="18" height="18" x="3" y="3" rx="2" />
             </svg>
           </button>
-          <button
+          <button (click)="closeWindow()"
             class="flex items-center justify-center w-4 h-4 bg-[#c0c0c0] border-t border-l border-r border-[#ffffff] border-b border-b-[#808080] border-r-[#808080] hover:active:bg-[#c0c0c0] hover:active:border-t-[#808080] hover:active:border-l-[#808080] hover:active:border-b-[#ffffff] hover:active:border-r-[#ffffff]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -33,31 +44,32 @@
       </div>
 
       <div class="flex text-xs border-b border-[#808080] bg-[#c0c0c0]">
-        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">File</button>
-        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">Edit</button>
-        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">View</button>
-        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">Help</button>
+        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">Файл</button><!--File-->
+        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">Редактировать</button><!--Edit-->
+        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">Вид</button><!--View-->
+        <button class="px-2 py-0.5 hover:bg-[#000080] hover:text-white">помощь</button><!--Help-->
       </div>
 
       <div class="flex-1 p-2 overflow-auto bg-white border border-[#808080] m-2">
 
         <div class="flex-1 p-2 overflow-auto bg-white border border-[#808080] m-2">
-          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-            <div *ngFor="let item of items" class="flex flex-col items-center justify-center text-center">
-              <div class="w-12 h-12 mb-1 bg-[#c0c0c0] border border-[#808080] flex items-center justify-center">
-                <span class="text-xs">{{
-                  item.includes('(') ? item.split(' ')[0] : 'Icon'
-                  }}</span>
+          <div [ngClass]="{ 'max-h-64 overflow-auto': items.length > 8 }" class="w-full">
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              <div *ngFor="let item of items" class="flex flex-col items-center justify-center text-center">
+                <div class="w-12 h-12 mb-1 bg-[#c0c0c0] border border-[#808080] flex items-center justify-center">
+                  <iconify-icon [icon]="item.icon" class="{{ item.style }} text-4xl"></iconify-icon>
+                </div>
+                <span class="text-xs">{{ item.name }}</span>
               </div>
-              <span class="text-xs">{{ item }}</span>
             </div>
           </div>
+
         </div>
 
       </div>
 
       <div class="flex items-center px-2 py-0.5 text-xs border-t border-[#dfdfdf]">
-        <div class="flex-1">Ready</div>
+        <div class="flex-1">Готовый</div><!--Ready-->
         <div
           class="border border-[#808080] bg-[#c0c0c0] px-1 py-0.5 shadow-[1px_1px_0px_#ffffff_inset,-1px_-1px_0px_#808080_inset]">
           <div class="w-20 h-2 bg-[#808080]"></div>
