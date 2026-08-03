@@ -3,10 +3,12 @@ import { HsrWorldWindowComponent } from './pages/windows/hsr-world-window/hsr-wo
 import { TestComponent } from './pages/test/test.component';
 import { RandomManagerComponent } from './random-manager/random-manager.component';
 import { Windows98WindowComponent } from './pages/windows/windows98-window/windows98-window.component';
+import { ShigeruWindowComponent } from './pages/windows/shigeru-window/shigeru-window.component';
 
 export const routes: Routes = [
   { path: '', component: RandomManagerComponent},
     { path: 'hsr', component: HsrWorldWindowComponent },
     { path: 'test', component: TestComponent },
     { path: 'window', component: Windows98WindowComponent },
+    { path: 'shigeru', component: ShigeruWindowComponent}
 ];
